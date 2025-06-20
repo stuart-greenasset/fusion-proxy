@@ -37,8 +37,10 @@ app.post('/fusion-kpi', async (req, res) => {
 
     res.json(kpiRes.data);
   } catch (err) {
-    res.status(500).send(err.response?.data || 'Something went wrong');
-  }
+  console.error("💥 Error occurred:", err.message);
+  console.error("💥 Full error:", err.response?.data || err);
+  res.status(500).send(err.response?.data || 'Something went wrong');
+}
 });
 
 app.listen(3000, () => console.log('Proxy live on port 3000'));
